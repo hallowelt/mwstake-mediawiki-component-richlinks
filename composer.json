@@ -1,6 +1,5 @@
 {
-	"name": "mwstake/mediawiki-component-linkdata",
-	"description": "linkdata",
+	"name": "mwstake/mediawiki-component-richlinks",
 	"license": "GPL-3.0-only",
 	"authors": [
 		{
@@ -16,8 +15,8 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"MWStake\\MediaWiki\\Component\\LinkData\\": "src/",
-			"MWStake\\MediaWiki\\Component\\LinkData\\Tests\\": "tests/phpunit/"
+			"MWStake\\MediaWiki\\Component\\RichLinks\\": "src/",
+			"MWStake\\MediaWiki\\Component\\RichLinks\\Tests\\": "tests/phpunit/"
 		},
 		"files": [
 			"bootstrap.php"
