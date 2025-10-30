@@ -12,9 +12,9 @@ use MediaWiki\User\UserFactory;
 use TitleFactory;
 
 class InternalLinks implements
-	   HtmlPageLinkRendererEndHook,
-	   LinkerMakeMediaLinkFileHook,
-	   ThumbnailBeforeProduceHTMLHook
+	HtmlPageLinkRendererEndHook,
+	LinkerMakeMediaLinkFileHook,
+	ThumbnailBeforeProduceHTMLHook
 {
 
 	/**

@@ -11,7 +11,7 @@ MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 	$GLOBALS['mwsgRichLinksPrefixes'] = $GLOBALS['mwsgRichLinksPrefixes'] || [];
 
 	$GLOBALS['wgHooks']['MediaWikiServices'][]
-		= function ( MediaWiki\MediaWikiServices $services ) {
+		= static function ( MediaWiki\MediaWikiServices $services ) {
 			$handler = new MWStake\MediaWiki\Component\RichLinks\HookHandler\InternalLinks(
 				$services->getTitleFactory(),
 				$services->getUserFactory(),
@@ -24,5 +24,5 @@ MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 				= [ $handler, 'onLinkerMakeMediaLinkFile' ];
 			$GLOBALS['wgHooks']['ThumbnailBeforeProduceHTML'][]
 				= [ $handler, 'onThumbnailBeforeProduceHTML' ];
-	 };
+		};
 } );
