@@ -8,7 +8,7 @@ define( 'MWSTAKE_MEDIAWIKI_COMPONENT_RICHLINKS_VERSION', '1.0.1' );
 
 MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 ->register( 'richlinks', static function () {
-	$GLOBALS['mwsgRichLinksPrefixes'] = $GLOBALS['mwsgRichLinksPrefixes'] || [];
+	$GLOBALS['mwsgRichLinksPrefixes'] = $GLOBALS['mwsgRichLinksPrefixes'] ?? [];
 
 	$GLOBALS['wgHooks']['MediaWikiServices'][]
 		= static function ( MediaWiki\MediaWikiServices $services ) {
