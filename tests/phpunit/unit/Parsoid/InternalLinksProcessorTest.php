@@ -308,8 +308,9 @@ class InternalLinksProcessorTest extends MediaWikiUnitTestCase {
 			$nsText = array_search( $ns, self::NAMESPACES, true );
 			return $this->makeTitle( $nsText === false ? $text : "$nsText:$text" );
 		} );
-		$titleFactory->method( 'newFromLinkTarget' )->willReturnCallback( function ( $linkTarget ) {
-			return $this->makeTitle( $linkTarget->getDBkey() );
+		$titleFactory->method( 'makeTitle' )->willReturnCallback( function ( $ns, $dbKey ) {
+			$nsText = array_search( $ns, self::NAMESPACES, true );
+			return $this->makeTitle( $nsText === false ? $dbKey : "$nsText:$dbKey" );
 		} );
 		return $titleFactory;
 	}
@@ -354,6 +355,7 @@ class InternalLinksProcessorTest extends MediaWikiUnitTestCase {
 		$siteConfig->method( 'relativeLinkPrefix' )->willReturn( $linkPrefix );
 
 		$linkTarget = $this->createMock( LinkTarget::class );
+		$linkTarget->method( 'getNamespace' )->willReturn( NS_MAIN );
 		$linkTarget->method( 'getDBkey' )->willReturn( self::CONTEXT_PAGE );
 		$pageConfig = $this->createMock( PageConfig::class );
 		$pageConfig->method( 'getLinkTarget' )->willReturn( $linkTarget );

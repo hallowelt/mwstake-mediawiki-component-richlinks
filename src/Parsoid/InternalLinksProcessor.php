@@ -54,8 +54,12 @@ class InternalLinksProcessor extends DOMProcessor {
 	 */
 	public function wtPostprocess( ParsoidExtensionAPI $extApi, $root, array $options ): void {
 		$linkPrefix = $extApi->getSiteConfig()->relativeLinkPrefix();
-		$contextTitle = $this->titleFactory->newFromLinkTarget(
-			$extApi->getPageConfig()->getLinkTarget()
+		// Not `TitleFactory::newFromLinkTarget`: in older MW versions (e.g. 1.43) it requires a
+		// `MediaWiki\Linker\LinkTarget`, which a Parsoid `LinkTarget` does not need to be
+		$pageLinkTarget = $extApi->getPageConfig()->getLinkTarget();
+		$contextTitle = $this->titleFactory->makeTitle(
+			$pageLinkTarget->getNamespace(),
+			$pageLinkTarget->getDBkey()
 		);
 
 		$this->walk( $root, $linkPrefix, $contextTitle );
