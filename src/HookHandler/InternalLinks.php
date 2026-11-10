@@ -3,10 +3,10 @@
 namespace MWStake\MediaWiki\Component\RichLinks\HookHandler;
 
 use File;
-use Html;
 use HtmlArmor;
 use MediaWiki\Hook\LinkerMakeMediaLinkFileHook;
 use MediaWiki\Hook\ThumbnailBeforeProduceHTMLHook;
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\Hook\HtmlPageLinkRendererEndHook;
 use MediaWiki\User\UserFactory;
 use TitleFactory;
@@ -41,7 +41,7 @@ class InternalLinks implements
 	public function __construct( $titleFactory, $userFactory, $additionalPrefixes = [] ) {
 		$this->titleFactory = $titleFactory;
 		$this->userFactory = $userFactory;
-		$this->prefixes += $additionalPrefixes;
+		$this->prefixes = array_values( array_unique( array_merge( $this->prefixes, $additionalPrefixes ) ) );
 	}
 
 	/**
@@ -65,10 +65,10 @@ class InternalLinks implements
 	public function onHtmlPageLinkRendererEnd( $linkRenderer, $target, $isKnown,
 		&$text, &$attribs, &$ret
 	) {
-		if ( $this->target->isExternal() ) {
+		if ( $target->isExternal() ) {
 			return true;
 		}
-		if ( empty( $this->target->getDBkey() ) ) {
+		if ( empty( $target->getDBkey() ) ) {
 			// not a real target (i.e links from the cite extension)
 			return true;
 		}
