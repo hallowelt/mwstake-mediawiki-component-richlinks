@@ -29,3 +29,12 @@ links with the user's real name.
 
 Existing parser cache entries do not contain the attributes. Purge affected pages or bump
 `$wgCacheEpoch` after installing this version.
+
+## Tests
+
+The unit tests in `tests/phpunit/unit` use MediaWiki's `MediaWikiUnitTestCase` and therefore need to be
+run from within a MediaWiki installation that has this component installed, e.g.
+
+```sh
+composer phpunit -- vendor/mwstake/mediawiki-component-richlinks/tests/phpunit/unit
+```

@@ -116,11 +116,10 @@ class InternalLinksProcessor extends DOMProcessor {
 	 * @param Title $contextTitle
 	 */
 	private function processWikiLink( $anchor, string $linkPrefix, Title $contextTitle ): void {
+		// Do not fall back to the `title` attribute: it gets localized (e.g. "Foo (page does not
+		// exist)" for red links) and is removed for self links
 		$href = $anchor->getAttribute( 'href' ) ?? '';
 		$title = $this->titleFromRelativeUrl( $href, $linkPrefix );
-		if ( !$title && $anchor->hasAttribute( 'title' ) ) {
-			$title = $this->titleFactory->newFromText( $anchor->getAttribute( 'title' ) );
-		}
 		if ( !$title || $title->isExternal() || $title->getDBkey() === '' ) {
 			return;
 		}
@@ -156,10 +155,8 @@ class InternalLinksProcessor extends DOMProcessor {
 	 * @param string $linkPrefix
 	 */
 	private function processMediaLink( $anchor, string $linkPrefix ): void {
+		// `resource` holds the link target, the `title` attribute only the file name
 		$title = $this->titleFromRelativeUrl( $anchor->getAttribute( 'resource' ) ?? '', $linkPrefix );
-		if ( !$title && $anchor->hasAttribute( 'title' ) ) {
-			$title = $this->titleFactory->makeTitleSafe( NS_MEDIA, $anchor->getAttribute( 'title' ) );
-		}
 		if ( !$title ) {
 			return;
 		}
