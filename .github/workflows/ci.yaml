@@ -16,7 +16,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.3
           tools: composer:2
 
       - name: Validate composer.json
@@ -27,3 +27,54 @@ jobs:
 
       - name: Run tests
         run: composer test
+
+  phpunit:
+    name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
+
+    continue-on-error: ${{ matrix.experimental }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - mw: 'REL1_43'
+            php: '8.3'
+            experimental: false
+          - mw: 'REL1_47'
+            php: '8.5'
+            experimental: false
+          - mw: 'master'
+            php: '8.5'
+            experimental: true
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl
+          tools: composer:2
+
+      # MediaWiki core pins some dependencies that are affected by security advisories
+      - name: Disable Composer block-insecure
+        run: composer config --global audit.block-insecure false
+
+      - name: Cache Composer cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache
+          key: composer-mw_${{ matrix.mw }}-php${{ matrix.php }}
+
+      - name: Checkout component
+        uses: actions/checkout@v4
+        with:
+          path: component
+
+      - name: Install MediaWiki
+        run: bash component/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} component
+
+      - name: Run unit tests
+        working-directory: mediawiki
+        run: composer phpunit -- vendor/mwstake/mediawiki-component-richlinks/tests/phpunit/unit
