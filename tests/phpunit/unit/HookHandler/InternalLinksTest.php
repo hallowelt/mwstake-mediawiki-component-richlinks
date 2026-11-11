@@ -2,7 +2,6 @@
 
 namespace MWStake\MediaWiki\Component\RichLinks\Tests\Unit\HookHandler;
 
-use HtmlArmor;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Title\Title;
@@ -13,6 +12,7 @@ use MediaWiki\User\UserFactory;
 use MediaWikiUnitTestCase;
 use MWStake\MediaWiki\Component\RichLinks\HookHandler\InternalLinks;
 use ThumbnailImage;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * @covers \MWStake\MediaWiki\Component\RichLinks\HookHandler\InternalLinks
