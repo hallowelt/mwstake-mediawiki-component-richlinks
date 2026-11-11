@@ -6,6 +6,22 @@ This component will alter links, created by the MediaWiki application. It will
 - add CSS-`class`es to allow better styling
 - alter the canonical username to the users real name on various locations (e. g. `action=history`)
 
+**This code is meant to be executed within the MediaWiki application context. No standalone usage is intended.**
+
+## Compatibility
+- \>= `1.0.x` -> MediaWiki 1.47
+
+## Use in a MediaWiki extension
+
+Require this component in the `composer.json` of your extension:
+
+```json
+{
+	"require": {
+		"mwstake/mediawiki-component-richlinks": "~1"
+	}
+}
+```
 
 ## Data attributes
 
