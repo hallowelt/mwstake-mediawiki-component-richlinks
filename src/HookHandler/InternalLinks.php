@@ -2,8 +2,8 @@
 
 namespace MWStake\MediaWiki\Component\RichLinks\HookHandler;
 
-use File;
 use HtmlArmor;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Hook\LinkerMakeMediaLinkFileHook;
 use MediaWiki\Hook\ThumbnailBeforeProduceHTMLHook;
 use MediaWiki\Html\Html;

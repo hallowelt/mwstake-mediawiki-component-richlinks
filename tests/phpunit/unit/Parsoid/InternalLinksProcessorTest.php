@@ -2,7 +2,7 @@
 
 namespace MWStake\MediaWiki\Component\RichLinks\Tests\Unit\Parsoid;
 
-use File;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\User;

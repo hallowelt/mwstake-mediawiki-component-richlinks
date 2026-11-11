@@ -2,8 +2,8 @@
 
 namespace MWStake\MediaWiki\Component\RichLinks\Tests\Unit\HookHandler;
 
-use File;
 use HtmlArmor;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
