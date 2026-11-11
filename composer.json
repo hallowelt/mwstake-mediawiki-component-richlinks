@@ -23,7 +23,7 @@
 	"autoload": {
 		"psr-4": {
 			"MWStake\\MediaWiki\\Component\\RichLinks\\": "src/",
-			"MWStake\\MediaWiki\\Component\\RichLinks\\Tests\\": "tests/phpunit/"
+			"MWStake\\MediaWiki\\Component\\RichLinks\\Tests\\Unit\\": "tests/phpunit/unit/"
 		},
 		"files": [
 			"bootstrap.php"
