@@ -7,8 +7,8 @@ use MediaWiki\Hook\LinkerMakeMediaLinkFileHook;
 use MediaWiki\Hook\ThumbnailBeforeProduceHTMLHook;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Hook\HtmlPageLinkRendererEndHook;
+use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserFactory;
-use TitleFactory;
 use Wikimedia\HtmlArmor\HtmlArmor;
 
 class InternalLinks implements
