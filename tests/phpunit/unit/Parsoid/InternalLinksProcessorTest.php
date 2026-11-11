@@ -3,13 +3,13 @@
 namespace MWStake\MediaWiki\Component\RichLinks\Tests\Unit\Parsoid;
 
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWikiUnitTestCase;
 use MWStake\MediaWiki\Component\RichLinks\Parsoid\InternalLinksProcessor;
-use RepoGroup;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\LinkTarget;

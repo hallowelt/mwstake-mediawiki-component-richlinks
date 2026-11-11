@@ -3,10 +3,10 @@
 namespace MWStake\MediaWiki\Component\RichLinks\Parsoid;
 
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserFactory;
-use RepoGroup;
 use Wikimedia\Parsoid\Ext\DOMProcessor;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 
